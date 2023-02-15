@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/styles";
+import About from "./Components/About";
 import "./App.css";
 
 const theme = createTheme({});
@@ -7,7 +8,9 @@ const theme = createTheme({});
 function App() {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}></ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <About />
+      </ThemeProvider>
     </div>
   );
 }
