@@ -9,8 +9,8 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import { textAlign } from "@mui/system";
 import { Grid } from "@mui/material";
+// import { height } from "@mui/system";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -74,27 +74,28 @@ function About() {
 
   return (
     <>
-      <Grid container>
-        <Paper
-          elevation={20}
-          sx={{
-            marginTop: 15,
-            marginLeft: 30,
-            marginRight: 20,
-            borderRadius: 5,
-            bgcolor: "#e3f2fd",
-            display: "flex",
-          }}
-        >
-          <Grid item xs={8} md={4} lg={6}>
+      <Paper
+        elevation={20}
+        sx={{
+          marginTop: 5,
+          marginBottom: 10,
+          marginLeft: { xs: 0, md: 10 },
+          marginRight: { xs: 0, md: 10 },
+          borderRadius: 5,
+          bgcolor: "#e3f2fd",
+          display: { xs: "block", md: "inline-flex" },
+        }}
+      >
+        <Grid container>
+          <Grid item xs={12} md={5}>
             <Box
               sx={{
-                maxWidth: 350,
+                maxWidth: 900,
                 flexGrow: 2,
                 borderRadius: 5,
                 bgcolor: "",
                 textJustify: "unset",
-                //   border: 2,
+                // border: 2,
                 height: 600,
                 textAlign: "center",
                 justifyContent: "center",
@@ -116,27 +117,43 @@ function About() {
                 single institution, empowering the medical team to address all
                 the patient's health needs and treat the whole person.{" "}
               </Typography>
-              <Button variant="contained" sx={{ marginTop: "90px" }}>
+              <Button
+                variant="contained"
+                sx={{ marginTop: { lg: "230px", xs: "50px", md: "100px" } }}
+              >
                 Book Your Appointment
               </Button>
             </Box>
           </Grid>
-          <Grid item xs={8} md={8} lg={6}>
-            <Box sx={{ maxWidth: 900, flexGrow: 2, marginLeft: 5 }}>
+          <Grid item xs={12} md={7}>
+            <Box sx={{ maxWidth: 900, flexGrow: 2 }}>
               <Paper
                 square
                 elevation={5}
                 sx={{
-                  display: "flex",
+                  display: "block",
                   alignItems: "center",
-                  height: 50,
+                  width: { md: "100%" },
+                  height: { md: 50, xs: 60 },
                   pl: 2,
-                  bgcolor: "background.default",
-                  borderRadius: 5,
+                  bgcolor: "Highlight",
+                  borderRadius: 3,
                   marginTop: 3,
+                  marginRight: 1,
+                  marginLeft: 1,
                 }}
               >
-                <Typography variant="h5">{images[activeStep].label}</Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "fantasy",
+                    fontSize: { xs: "15px", md: "20px", lg: "30px" },
+                    textAlign: "center",
+                    paddingTop: { xs: "10px", md: "5px" },
+                    paddingLeft: { xs: "5px" },
+                  }}
+                >
+                  {images[activeStep].label}
+                </Typography>
               </Paper>
               <AutoPlaySwipeableViews
                 axis={theme.direction === "rtl" ? "y-reverse" : "x"}
@@ -150,7 +167,7 @@ function About() {
                       <Box
                         component="img"
                         sx={{
-                          height: 400,
+                          height: 500,
                           display: "block",
                           maxWidth: 900,
                           overflow: "hidden",
@@ -198,8 +215,8 @@ function About() {
               />
             </Box>
           </Grid>
-        </Paper>
-      </Grid>
+        </Grid>
+      </Paper>
     </>
   );
 }
