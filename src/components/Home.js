@@ -85,9 +85,26 @@ const Home = () => {
     } else {
       console.log("data added succesfully");
       history("/login");
-      localStorage.setItem("useryoutube", JSON.stringify([...data, inpval]));
+      localStorage.setItem("useryoutube", JSON.stringify({ ...data, inpval }));
     }
   };
+
+  // const onSubmit = (data) => {
+  //   localStorage.setItem(
+  //     data.name,
+  //     data.email,
+  //     data.contact,
+  //     data.password,
+  //     JSON.stringify({
+  //       name: data.name,
+  //       email: data.email,
+  //       contact: data.contact,
+  //       password: data.password,
+  //       cpassword: data.cpassword,
+  //     })
+  //   );
+  //   console.log(JSON.parse(localStorage.getItem(data.email)));
+  // };
 
   return (
     <>
@@ -161,19 +178,22 @@ const Home = () => {
               <Button
                 variant="primary"
                 className="col-lg-6"
-                onClick={addData}
+                onClick={
+                  addData
+                  // onSubmit();
+                }
                 style={{ background: "rgb(135, 206, 235)" }}
                 type="submit"
               >
                 Submit
               </Button>
             </Form>
-            <p className="mt-3">
+            {/* <p className="mt-3">
               Already Have an Account{" "}
               <span>
                 <NavLink to="/login">LOG IN</NavLink>
               </span>{" "}
-            </p>
+            </p> */}
           </div>
           <SIgn_img />
         </section>
