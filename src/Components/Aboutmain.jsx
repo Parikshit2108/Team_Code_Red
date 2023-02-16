@@ -78,7 +78,7 @@ function Sidebar(props) {
             </ListItemIcon>
             <ListItemText
               onClick={() => {
-                navigate("/");
+                navigate("/PlanpriceMain");
               }}
               primary="Plans & Price"
               sx={{ color: "#64b5f6" }}

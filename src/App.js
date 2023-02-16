@@ -7,6 +7,7 @@ import Home from "./Components/Home";
 import Aboutmain from "./Components/Aboutmain";
 import Bookinginfo from "./Components/Bookinginfo";
 import Userinfomain from "./Components/Userinfomain";
+import PlanpriceMain from "./Components/PlanpriceMain";
 
 const theme = createTheme({});
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/Aboutmain" element={<Aboutmain />}></Route>
             <Route path="/Bookinginfo" element={<Bookinginfo />}></Route>
             <Route path="/Userinfomain" element={<Userinfomain />}></Route>
+            <Route path="/PlanpriceMain" element={<PlanpriceMain />}></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

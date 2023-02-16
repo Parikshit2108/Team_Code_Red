@@ -22,15 +22,97 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
-import { Stack } from "@mui/material";
-import About from "./About";
-import UserInfo from "./UserInfo";
-import { useNavigate } from "react-router-dom";
+import { Grid, Stack } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
+import "../plansprice/PlansPrice.css";
+import BloodtypeIcon from "@mui/icons-material/Bloodtype";
+import { useNavigate } from "react-router";
 
 const drawerWidth = 240;
 
+const plan = [
+  {
+    test: "Blood Test",
+    Price: "$500",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Sugar Test",
+    Price: "$700",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Tyroid Test",
+    Price: "$800",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Covid 19 Test",
+    Price: "$900",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Bp Test",
+    Price: "$500",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Hiv Test",
+    Price: "$2000",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "CT scans ",
+    Price: "$5000",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Urine Test ",
+    Price: "$200",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Diabetes ",
+    Price: "$500",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Malaria Test ",
+    Price: "$50",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "kidney Test ",
+    Price: "$100",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+  {
+    test: "Eye Test ",
+    Price: "$100",
+    Drname: "abcd",
+    availableslot: 5,
+  },
+];
+
 function Sidebar(props) {
   let navigate = useNavigate();
+
+  let logOut = () => {
+    alert("Are you sure, You want to logout...");
+    localStorage.removeItem("logindata");
+    navigate("/Login");
+  };
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -72,7 +154,7 @@ function Sidebar(props) {
             </ListItemIcon>
             <ListItemText
               onClick={() => {
-                navigate("/");
+                navigate("/PlanpriceMain");
               }}
               primary="Plans & Price"
               sx={{ color: "#64b5f6" }}
@@ -86,7 +168,7 @@ function Sidebar(props) {
             </ListItemIcon>
             <ListItemText
               onClick={() => {
-                navigate("/Userinfomain");
+                navigate("/");
               }}
               primary="Book Slots"
               sx={{ color: "#64b5f6" }}
@@ -98,7 +180,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <GroupIcon />
             </ListItemIcon>
-            <ListItemText primary="Users" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/Userinfomain");
+              }}
+              primary="Users"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -120,7 +208,11 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <LogoutIcon />
             </ListItemIcon>
-            <ListItemText primary="Logout" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              primary="Logout"
+              sx={{ color: "#64b5f6" }}
+              onClick={logOut}
+            />
           </ListItemButton>
         </ListItem>
       </List>
@@ -142,14 +234,6 @@ function Sidebar(props) {
           bgcolor: "#90caf9",
         }}
       >
-        {/* <Box >
-  <Toolbar sx={{display:"flex", justifyContent:"space-between"}} >
- 
-  <Typography marginLeft={"45%"} >Hospital Name</Typography>
-  <Typography sx={{display: {xs:"none" , md:"flex" }}}>Welcome user</Typography>
-  </Toolbar>
-</Box> */}
-
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <IconButton
             color="inherit"
@@ -190,7 +274,7 @@ function Sidebar(props) {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Log-Out</MenuItem>
+              <MenuItem onClick={logOut}>Log-Out</MenuItem>
             </Menu>
           </Stack>
         </Toolbar>
@@ -240,36 +324,74 @@ function Sidebar(props) {
         }}
       >
         <Toolbar />
-        {/* <UserInfo /> */}
-        {/* <Users /> */}
-        {/* <About /> */}
-        {/* <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography> */}
+        {/* <UserInfo />
+        <Users /> 
+        <About /> */}
+        <Grid
+          container
+          className="card"
+          columnSpacing={{ xs: 2, sm: 2, md: 3 }}
+        >
+          {/* <div className='cardbody'> */}
+          {plan.map((element, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Card className="cordsize">
+                <CardContent key={index}>
+                  <td>
+                    {
+                      <BloodtypeIcon
+                        style={{
+                          backgroundColor: "white",
+                          color: "red",
+                          height: 30,
+                          width: 40,
+                          borderRadius: "50%",
+                        }}
+                      />
+                    }
+                  </td>
+                  <Typography
+                    sx={{ fontFamily: "initial", fontWeight: "bolder" }}
+                    className="text"
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                  >
+                    Test={element.test}
+                  </Typography>
+                  <Typography
+                    sx={{ fontFamily: "initial" }}
+                    className="textc"
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                  >
+                    Price={element.Price}
+                  </Typography>
+                  <Typography
+                    sx={{ fontFamily: "initial" }}
+                    className="textc"
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                  >
+                    DR.Name={element.Drname}
+                  </Typography>
+                  <Typography
+                    sx={{ fontFamily: "initial" }}
+                    className="textc"
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                  >
+                    Available Slot={element.availableslot}
+                  </Typography>
+                </CardContent>
+              </Card>{" "}
+            </Grid>
+          ))}
+          {/* </div> */}
+        </Grid>
       </Box>
     </Box>
   );
