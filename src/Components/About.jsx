@@ -10,7 +10,6 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { Grid } from "@mui/material";
-// import { height } from "@mui/system";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 

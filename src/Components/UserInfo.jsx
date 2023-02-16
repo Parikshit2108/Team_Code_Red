@@ -11,7 +11,7 @@ import { Typography } from "@mui/material";
 import { useState } from "react";
 
 const columns = [
-  { id: "srno", label: "Sr.No", minWidth: 100 },
+  { id: "rows.index", label: "Sr.No", minWidth: 100 },
   { id: "name", label: "User_name", minWidth: 100 },
   {
     id: "email",
@@ -35,16 +35,18 @@ const columns = [
     format: (value) => value.toFixed(2),
   },
 ];
+let userInfo = JSON.parse(localStorage.getItem("useryoutube"));
 
-const rows = [
-  {
-    srno: "1",
-    name: "parikshit_patil",
-    email: "parikshit@mail.com",
-    profile: "Img",
-    contact: "0000012345",
-  },
-];
+const rows = userInfo;
+// [
+//   {
+//     srno: "",
+//     name: "",
+//     email: "",
+//     profile: "",
+//     contact: "",
+//   },
+// ];
 
 export default function ColumnGroupingTable() {
   const [page, setPage] = useState(0);
@@ -91,23 +93,14 @@ export default function ColumnGroupingTable() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell
-                          sx={{ bgcolor: "light" }}
-                          key={column.id}
-                          align={column.align}
-                        >
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
+                  <TableRow key={index}>
+                    <TableCell>{index}</TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.email}</TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.contact}</TableCell>
                   </TableRow>
                 );
               })}

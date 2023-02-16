@@ -108,7 +108,7 @@ function BookingModel() {
         <Paper elevation={10} style={paperStyle}>
           <img
             src="Images\logo.png"
-            alt="image"
+            alt="image1"
             style={{
               width: "100px",
               height: "100px",
