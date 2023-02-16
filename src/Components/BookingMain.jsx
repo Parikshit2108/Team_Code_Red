@@ -23,8 +23,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import { Stack } from "@mui/material";
-import UserInfo from "./UserInfo";
 import { useNavigate } from "react-router-dom";
+import BookingModel from "./BookingModel";
 
 const drawerWidth = 240;
 
@@ -247,7 +247,7 @@ function Sidebar(props) {
         }}
       >
         <Toolbar />
-        <UserInfo />
+        <BookingModel />
       </Box>
     </Box>
   );

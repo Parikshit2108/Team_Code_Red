@@ -6,7 +6,6 @@ import './PlansPrice.css'
 import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 
 
-
 const plan = [{
    
     test: "Blood Test",

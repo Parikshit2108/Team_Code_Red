@@ -91,7 +91,7 @@ function Sidebar(props) {
             </ListItemIcon>
             <ListItemText
               onClick={() => {
-                navigate("/");
+                navigate("/BookingMain");
               }}
               primary="Book Slots"
               sx={{ color: "#64b5f6" }}

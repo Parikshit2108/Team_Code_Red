@@ -16,13 +16,9 @@ const Login = () => {
   });
 
   const [data, setData] = useState([]);
-  console.log(inpval);
 
   const getdata = (e) => {
-    // console.log(e.target.value);
-
     const { value, name } = e.target;
-    // console.log(value,name);
 
     setInpval(() => {
       return {
@@ -36,7 +32,6 @@ const Login = () => {
     e.preventDefault();
 
     const getuserArr = localStorage.getItem("userdata");
-    console.log(getuserArr);
 
     const { email, password } = inpval;
     if (email === "") {
@@ -66,8 +61,6 @@ const Login = () => {
           alert("invalid details");
         } else {
           alert("user login succesfully");
-
-          console.log(inpval.email);
 
           let userInfo = localStorage.getItem("logindata");
           let userdata = userInfo ? JSON.parse(userInfo) : [];

@@ -32,11 +32,14 @@ const drawerWidth = 240;
 function Sidebar(props) {
   let navigate = useNavigate();
 
-  let logOut = () => {
+  let logOut = function log() {
     alert("Are you sure, You want to logout...");
     localStorage.removeItem("logindata");
-    navigate("/Login");
+    navigate("/");
   };
+  let username = JSON.parse(localStorage.getItem("logindata"));
+  // console.log(username);
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -92,7 +95,7 @@ function Sidebar(props) {
             </ListItemIcon>
             <ListItemText
               onClick={() => {
-                navigate("/");
+                navigate("/BookingMain");
               }}
               primary="Book Slots"
               sx={{ color: "#64b5f6" }}
@@ -135,7 +138,9 @@ function Sidebar(props) {
             <ListItemText
               primary="Logout"
               sx={{ color: "#64b5f6" }}
-              onClick={logOut}
+              onClick={() => {
+                logOut();
+              }}
             />
           </ListItemButton>
         </ListItem>
@@ -176,7 +181,7 @@ function Sidebar(props) {
             <Typography
               sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
             >
-              username
+              welcome {username ? username[0] : ""}
             </Typography>
             <IconButton
               size="large"
@@ -198,7 +203,13 @@ function Sidebar(props) {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>My account</MenuItem>
-              <MenuItem onClick={logOut}>Log-Out</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  logOut();
+                }}
+              >
+                Log-Out
+              </MenuItem>
             </Menu>
           </Stack>
         </Toolbar>
