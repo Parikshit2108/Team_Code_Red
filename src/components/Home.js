@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+//import { NavLink } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SIgn_img from "./SIgn_img";
+import Signinimg from "./Signinimg";
 
 const Home = () => {
-  const history = useNavigate();
+  // const history = useNavigate();
 
   const [inpval, setInpval] = useState({
     name: "",
     contact: "",
     email: "",
     // date: "",
-
+    profile:
+      "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
     password: "",
     cpassword: "",
   });
@@ -84,27 +85,13 @@ const Home = () => {
       });
     } else {
       console.log("data added succesfully");
-      history("/login");
-      localStorage.setItem("useryoutube", JSON.stringify({ ...data, inpval }));
+      //history("/login");
+      let userInfo = localStorage.getItem("userdata");
+      let userdata = userInfo ? JSON.parse(userInfo) : [];
+      userdata.push(inpval);
+      localStorage.setItem("userdata", JSON.stringify(userdata));
     }
   };
-
-  // const onSubmit = (data) => {
-  //   localStorage.setItem(
-  //     data.name,
-  //     data.email,
-  //     data.contact,
-  //     data.password,
-  //     JSON.stringify({
-  //       name: data.name,
-  //       email: data.email,
-  //       contact: data.contact,
-  //       password: data.password,
-  //       cpassword: data.cpassword,
-  //     })
-  //   );
-  //   console.log(JSON.parse(localStorage.getItem(data.email)));
-  // };
 
   return (
     <>
@@ -195,7 +182,7 @@ const Home = () => {
               </span>{" "}
             </p> */}
           </div>
-          <SIgn_img />
+          <Signinimg />
         </section>
         <ToastContainer />
       </div>

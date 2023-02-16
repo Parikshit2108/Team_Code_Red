@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import SIgn_img from "./SIgn_img";
+import Signinimg from "./Signinimg";
+
+// import { NavLink } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  //   const history = useNavigate();
+  // const history = useNavigate();
 
   const [inpval, setInpval] = useState({
     email: "",
@@ -34,7 +36,7 @@ const Login = () => {
   const addData = (e) => {
     e.preventDefault();
 
-    const getuserArr = localStorage.getItem("useryoutube");
+    const getuserArr = localStorage.getItem("userdata");
     console.log(getuserArr);
 
     const { email, password } = inpval;
@@ -64,11 +66,17 @@ const Login = () => {
         if (userlogin.length === 0) {
           alert("invalid details");
         } else {
-          alert("user login succesful");
+          alert("user login succesfully");
 
-          localStorage.setItem("user_login", JSON.stringify(userlogin));
+          console.log(inpval.email);
 
-          //   history("/details");
+          let userInfo = localStorage.getItem("logindata");
+          let userdata = userInfo ? JSON.parse(userInfo) : [];
+          userdata.push(inpval.email);
+
+          localStorage.setItem("logindata", JSON.stringify(userdata));
+
+          // history("/home");
         }
       }
     }
@@ -79,7 +87,7 @@ const Login = () => {
       <div className="container mt-3">
         <section className="d-flex justify-content-between">
           <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
-            <h3 className="text-center col-lg-6">LOG IN</h3>
+            <h3 className="text-center col-lg-6">Login</h3>
             <Form>
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
                 <Form.Control
@@ -111,11 +119,17 @@ const Login = () => {
                 Submit
               </Button>
             </Form>
-            <p className="mt-3">
+            {/* <p className="mt-3">
               Already Have an Account <span>SignIn</span>{" "}
-            </p>
+            </p> */}
+            {/* <p className="mt-3">
+              Already Have an Account{" "}
+              <span>
+                <NavLink to="/home">Home</NavLink>
+              </span>{" "}
+            </p> */}
           </div>
-          <SIgn_img />
+          <Signinimg />
         </section>
         <ToastContainer />
       </div>
