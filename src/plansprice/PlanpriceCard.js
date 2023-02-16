@@ -84,6 +84,8 @@ const plan = [{
 },
 
 ];
+
+localStorage.setItem("plData",JSON.stringify(plan))
 function PlanpriceCard() {
 
 const [planData, setPlanDtata] = useState(plan)
