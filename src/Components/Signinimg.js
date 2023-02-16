@@ -1,6 +1,6 @@
 import React from "react";
 
-const SIgn_img = () => {
+const Signinimg = () => {
   return (
     <>
       <div className="right_data mt-5" style={{ width: "100%" }}>
@@ -14,4 +14,4 @@ const SIgn_img = () => {
   );
 };
 
-export default SIgn_img;
+export default Signinimg;

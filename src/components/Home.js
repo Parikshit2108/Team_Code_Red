@@ -1,28 +1,26 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SIgn_img from "./SIgn_img";
+import Signinimg from "./Signinimg";
 
 const Home = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [inpval, setInpval] = useState({
     name: "",
     contact: "",
     email: "",
     // date: "",
-
+    profile:
+      "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
     password: "",
     cpassword: "",
   });
 
   const [data, setData] = useState([]);
-  console.log(inpval);
-
   const getdata = (e) => {
     // console.log(e.target.value);
 
@@ -83,9 +81,12 @@ const Home = () => {
         position: "top-center",
       });
     } else {
-      console.log("data added succesfully");
-      history("/login");
-      localStorage.setItem("useryoutube", JSON.stringify([...data, inpval]));
+      alert("User registerd succesfully");
+      navigate("/");
+      let userInfo = localStorage.getItem("userdata");
+      let userdata = userInfo ? JSON.parse(userInfo) : [];
+      userdata.push(inpval);
+      localStorage.setItem("userdata", JSON.stringify(userdata));
     }
   };
 
@@ -161,21 +162,18 @@ const Home = () => {
               <Button
                 variant="primary"
                 className="col-lg-6"
-                onClick={addData}
+                onClick={
+                  addData
+                  // onSubmit();
+                }
                 style={{ background: "rgb(135, 206, 235)" }}
                 type="submit"
               >
                 Submit
               </Button>
             </Form>
-            <p className="mt-3">
-              Already Have an Account{" "}
-              <span>
-                <NavLink to="/login">LOG IN</NavLink>
-              </span>{" "}
-            </p>
           </div>
-          <SIgn_img />
+          <Signinimg />
         </section>
         <ToastContainer />
       </div>
