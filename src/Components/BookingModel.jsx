@@ -15,6 +15,11 @@ import {
 import MenuItem from "@mui/material/MenuItem";
 import { Box, margin } from "@mui/system";
 import { Button } from "@mui/material";
+import { element } from "prop-types";
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import PaymentsIcon from '@mui/icons-material/Payments';
+
 
 function BookingModel() {
     
@@ -25,6 +30,7 @@ function BookingModel() {
     errordoctorname: false,
     errorpaymentMode: false,
     errorBookingSlot:false,
+    errorBookingSlot1:false,
    }) 
   const [inputValue, setinputValue] = useState({
     patientname: "null",
@@ -36,7 +42,8 @@ function BookingModel() {
     BookingSlot:"",
   });
   console.log(inputValue);
-
+//temp
+let plandata=JSON.parse(localStorage.getItem("pldata"))
 
   const confirmBooking = () => {
     
@@ -47,6 +54,7 @@ function BookingModel() {
     let tempdoctorname = false
     let temppaymentMode = false
     let tempBookingSlot = false
+    let tempBookingSlot1=false
 
     if(inputValue.Date===""){
         tempDate=true
@@ -77,6 +85,12 @@ function BookingModel() {
         tempBookingSlot=true
         error=true
     }
+
+    if(inputValue.BookingSlot>5 || inputValue.BookingSlot<=0){
+      tempBookingSlot1=true
+      error=true
+  }
+
     setformErrors({
         errorDate:tempDate,
     errorgender: tempgender,
@@ -84,6 +98,7 @@ function BookingModel() {
     errordoctorname: tempdoctorname,
     errorpaymentMode: temppaymentMode,
     errorBookingSlot:tempBookingSlot,
+    errorBookingSlot1:tempBookingSlot1,
     })
 
     if(error===false){
@@ -98,7 +113,7 @@ function BookingModel() {
 
   const paperStyle = {
     padding: 20,
-    height: "153vh",
+    height: {xs: "170vh" , md:"153"},
     width: 500,
     margin: "20px auto",
   };
@@ -150,12 +165,13 @@ function BookingModel() {
             
             {formErrors.errorDate &&  <Typography color="error">This Field Should'nt be Empty</Typography>}
 
-            <FormControl style={{ marginBottom: "12px" }}>
+            <FormControl style={{ marginBottom: "12px"}}>
               <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
               <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
+              row 
+                aria-labelledby="demo-row-radio-buttons-group-label"
                 
-                name="radio-buttons-group"
+                name="row-radio-buttons-group"
                 onChange={(e) => {
                   setinputValue({ ...inputValue, gender: e.target.value });
                   console.log(e.target.value);
@@ -202,7 +218,8 @@ function BookingModel() {
 
                   //   onChange={handleChange}
                 >
-                  <MenuItem value={"Blood Test"}>Blood Test</MenuItem>
+                  {plandata.map((element)=> <MenuItem value={`${element.test}`}>{element.test}</MenuItem>)}
+                  {/* <MenuItem value={"Blood Test"}>Blood Test</MenuItem>
                   <MenuItem value={"Sugar Test"}>Sugar Test</MenuItem>
                   <MenuItem value={"Tyroid Test"}>Tyroid Test</MenuItem>
                   <MenuItem value={"Covid 19 Test"}>Covid 19 Test</MenuItem>
@@ -213,7 +230,7 @@ function BookingModel() {
                   <MenuItem value={"Diabetes"}>Diabetes</MenuItem>
                   <MenuItem value={"Malaria Test"}>Malaria Test</MenuItem>
                   <MenuItem value={"Kidney Test"}>Kidney Test</MenuItem>
-                  <MenuItem value={"Eye Test"}>Eye Test</MenuItem>
+                  <MenuItem value={"Eye Test"}>Eye Test</MenuItem> */}
                 </Select>
               </FormControl>
             {formErrors.errortest &&  <Typography color="error">This Field Should'nt be Empty</Typography>}
@@ -244,7 +261,7 @@ function BookingModel() {
               }}
             />
             {formErrors.errorBookingSlot &&  <Typography color="error">This Field Should'nt be Empty</Typography>}
-
+            {formErrors.errorBookingSlot1 &&  <Typography color="error">Slot shoud be 1 to 5 only</Typography>}
               <FormControl fullWidth style={{ marginBottom: "12px" }}>
                 <InputLabel
                   id="demo-simple-select-label"
@@ -266,20 +283,22 @@ function BookingModel() {
                     });
                     console.log(e.target.value);
                   }}>
-                  <MenuItem value={"UPI"}>UPI</MenuItem>
-                  <MenuItem value={"NetBanking"}>NetBanking</MenuItem>
-                  <MenuItem value={"Cash"}>Cash</MenuItem>
+                  <MenuItem value={"UPI"}>UPI<PaymentsIcon sx={{display:"flex", color:"#fb8c00"}} /></MenuItem>
+                  <MenuItem value={"NetBanking"}>NetBanking<CreditCardIcon sx={{display:"flex", color:"#0d47a1"}} /></MenuItem>
+                  <MenuItem  value={"Cash"}>Cash<CurrencyRupeeIcon sx={{display:"flex", color:"#1b5e20"}} /></MenuItem>
                 </Select>
               </FormControl>
+              
             {formErrors.errorpaymentMode &&  <Typography color="error">This Field Should'nt be Empty</Typography>}
-            
+            <Grid>
             <Button variant="contained" 
+            sx={{backgroundColor:'#64b5f6'}}
            
-            sx={{ marginLeft:'32%', backgroundColor:'#64b5f6', marginTop:{xs:'0',md:'140px'}}} 
+            // sx={{ marginLeft:'2%', backgroundColor:'#64b5f6', marginTop:{xs:'10px',md:'70px'}}} 
             onClick={()=>{
                     confirmBooking()
                   }} >Confirm Booking</Button>
-              
+              </Grid>
             </Box>
            
          

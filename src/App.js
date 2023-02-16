@@ -5,7 +5,9 @@ import Aboutmain from "./Components/Aboutmain";
 // import Userinfomain from "./Components/Userinfomain";
 // import Home from "./Components/Home";
 // import UserInfo from "./Components/UserInfo";
+import BookingMain from "./Components/BookingMain"
 import "./App.css";
+import PlanpriceCard from "./plansprice/PlanpriceCard";
 
 const theme = createTheme({});
 
@@ -13,7 +15,8 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Aboutmain />
+        <BookingMain />
+        {/* <PlanpriceCard /> */}
       </ThemeProvider>
     </div>
   );
