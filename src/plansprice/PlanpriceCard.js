@@ -10,7 +10,7 @@ const plan = [{
    
     test: "Blood Test",
     Price: "$500",
-    Drname: "abcd",
+    Drname: "Dr.Alisha",
     availableslot: 5,
 
 
@@ -18,73 +18,74 @@ const plan = [{
 {
     test: "Sugar Test",
     Price: "$700",
-    Drname: "abcd",
+    Drname: "Dr.Wisdom",
     availableslot: 5,
 },
 {
     test: "Tyroid Test",
     Price: "$800",
-    Drname: "abcd",
+    Drname: "Dr.Edward",
     availableslot: 5,
 },
 {
     test: "Covid 19 Test",
     Price: "$900",
-    Drname: "abcd",
+    Drname: "Dr.Jenny",
     availableslot: 5,
 },
 {
     test: "Bp Test",
     Price: "$500",
-    Drname: "abcd",
+    Drname: "Dr.Charles",
     availableslot: 5,
 },
 {
     test: "Hiv Test",
     Price: "$2000",
-    Drname: "abcd",
+    Drname: "Dr.Mark",
     availableslot: 5,
 },
 {
     test: "CT scans ",
     Price: "$5000",
-    Drname: "abcd",
+    Drname: "Dr.David",
     availableslot: 5,
 },
 {
     test: "Urine Test ",
     Price: "$200",
-    Drname: "abcd",
+    Drname: "Dr.Drake ramory",
     availableslot: 5,
 },
 {
     test: "Diabetes ",
     Price: "$500",
-    Drname: "abcd",
+    Drname: "Dr.Smith",
     availableslot: 5,
 },
 {
     test: "Malaria Test ",
     Price: "$50",
-    Drname: "abcd",
+    Drname: "Dr.Paul",
     availableslot: 5,
 },
 {
     test: "kidney Test ",
     Price: "$100",
-    Drname: "abcd",
+    Drname: "Dr.James",
     availableslot: 5,
 },
 {
     test: "Eye Test ",
     Price: "$100",
-    Drname: "abcd",
+    Drname: "Dr.Patra   ",
     availableslot: 5,
 },
 
 ];
 
 
+localStorage.setItem("plandata",JSON.stringify(plan))
 function PlanpriceCard() {
 
 const [planData, setPlanDtata] = useState(plan)

@@ -37,13 +37,13 @@ function BookingModel() {
     Date: "",
     gender: "",
     test: "",
-    doctorname: "",
+    Drname: "",
     paymentMode: "",
     BookingSlot:"",
   });
   console.log(inputValue);
 //temp
-let plandata=JSON.parse(localStorage.getItem("pldata"))
+let plandata=JSON.parse(localStorage.getItem("plandata"))
 
   const confirmBooking = () => {
     
@@ -71,7 +71,7 @@ let plandata=JSON.parse(localStorage.getItem("pldata"))
         error=true
     }
 
-    if(inputValue.doctorname===""){
+    if(inputValue.doctorname ===""){
         tempdoctorname =true
         error=true
     }
@@ -219,33 +219,33 @@ let plandata=JSON.parse(localStorage.getItem("pldata"))
                   //   onChange={handleChange}
                 >
                   {plandata.map((element)=> <MenuItem value={`${element.test}`}>{element.test}</MenuItem>)}
-                  {/* <MenuItem value={"Blood Test"}>Blood Test</MenuItem>
-                  <MenuItem value={"Sugar Test"}>Sugar Test</MenuItem>
-                  <MenuItem value={"Tyroid Test"}>Tyroid Test</MenuItem>
-                  <MenuItem value={"Covid 19 Test"}>Covid 19 Test</MenuItem>
-                  <MenuItem value={"BP Test"}>BP Test</MenuItem>
-                  <MenuItem value={"HIV Test"}>HIV Test</MenuItem>
-                  <MenuItem value={"CT Scan"}>CT Scan</MenuItem>
-                  <MenuItem value={"Urine Test"}>Urine Test</MenuItem>
-                  <MenuItem value={"Diabetes"}>Diabetes</MenuItem>
-                  <MenuItem value={"Malaria Test"}>Malaria Test</MenuItem>
-                  <MenuItem value={"Kidney Test"}>Kidney Test</MenuItem>
-                  <MenuItem value={"Eye Test"}>Eye Test</MenuItem> */}
                 </Select>
               </FormControl>
             {formErrors.errortest &&  <Typography color="error">This Field Should'nt be Empty</Typography>}
+            <FormControl fullWidth style={{ marginBottom: "12px" }}>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  style={{ marginBottom: "12px" }}
+                >
+                  Doctor
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={inputValue.Drname}
+                  variant="outlined"
+                  label="Doctor"
+                  placeholder="Doctor"
+                  onChange={(e) => {
+                    setinputValue({ ...inputValue, Drname: e.target.value });
+                    console.log(e.target.value);
+                  }}
 
-              <TextField
-              variant="outlined"
-              style={{ marginBottom: "12px" }}
-              label="Doctor Name"
-              placeholder="Enter Doctor Name"
-              fullWidth
-              onChange={(e) => {
-                setinputValue({ ...inputValue, doctorname: e.target.value });
-                console.log(e.target.value);
-              }}
-            />
+                  //   onChange={handleChange}
+                >
+                  {plandata.map((element)=> <MenuItem value={`${element.Drname}`}>{element.Drname}</MenuItem>)}
+                </Select>
+              </FormControl>
             {formErrors.errordoctorname &&  <Typography color="error">This Field Should'nt be Empty</Typography>}
 
             <TextField
