@@ -1,23 +1,21 @@
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/styles";
+import Aboutmain from "./Components/Aboutmain";
+// import Bookinginfo from "./Components/Bookinginfo";
+// import Userinfomain from "./Components/Userinfomain";
+// import Home from "./Components/Home";
+// import UserInfo from "./Components/UserInfo";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-// import Header from './components/Header';
-import Home from "./components/Home";
-import Login from "./components/Login";
-// import Details from "./components/Details";
-import Errror from "./components/Errror";
-import { Routes, Route } from "react-router-dom";
+
+const theme = createTheme({});
 
 function App() {
   return (
-    <>
-      {/* <Header /> */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        {/* <Route path="/details" element={<Details />} /> */}
-        <Route path="*" element={<Errror />} />
-      </Routes>
-    </>
+    <div className="App">
+      <ThemeProvider theme={theme}>
+        <Aboutmain />
+      </ThemeProvider>
+    </div>
   );
 }
 
