@@ -25,10 +25,12 @@ import Menu from "@mui/material/Menu";
 import { Stack } from "@mui/material";
 import About from "./About";
 import UserInfo from "./UserInfo";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
 function Sidebar(props) {
+  let navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -54,7 +56,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <InfoIcon />
             </ListItemIcon>
-            <ListItemText primary="About" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/Aboutmain");
+              }}
+              primary="About"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -62,7 +70,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <CurrencyRupeeIcon />
             </ListItemIcon>
-            <ListItemText primary="Plans & Price" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/");
+              }}
+              primary="Plans & Price"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -70,7 +84,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <BookmarkAddIcon />
             </ListItemIcon>
-            <ListItemText primary="Book Slots" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/Userinfomain");
+              }}
+              primary="Book Slots"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -86,7 +106,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <FormatListNumberedIcon />
             </ListItemIcon>
-            <ListItemText primary="Bookings" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/Bookinginfo");
+              }}
+              primary="Bookings"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>

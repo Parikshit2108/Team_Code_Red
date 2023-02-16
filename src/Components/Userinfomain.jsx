@@ -24,10 +24,18 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import { Stack } from "@mui/material";
 import UserInfo from "./UserInfo";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
 function Sidebar(props) {
+  let navigate = useNavigate();
+
+  let logOut = () => {
+    alert("Are you sure, You want to logout...");
+    localStorage.removeItem("logindata");
+    navigate("/Login");
+  };
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -53,7 +61,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <InfoIcon />
             </ListItemIcon>
-            <ListItemText primary="About" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/Aboutmain");
+              }}
+              primary="About"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -61,7 +75,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <CurrencyRupeeIcon />
             </ListItemIcon>
-            <ListItemText primary="Plans & Price" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/");
+              }}
+              primary="Plans & Price"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -69,7 +89,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <BookmarkAddIcon />
             </ListItemIcon>
-            <ListItemText primary="Book Slots" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/");
+              }}
+              primary="Book Slots"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -77,7 +103,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <GroupIcon />
             </ListItemIcon>
-            <ListItemText primary="Users" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/Userinfomain");
+              }}
+              primary="Users"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -85,7 +117,13 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <FormatListNumberedIcon />
             </ListItemIcon>
-            <ListItemText primary="Bookings" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              onClick={() => {
+                navigate("/Bookinginfo");
+              }}
+              primary="Bookings"
+              sx={{ color: "#64b5f6" }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
@@ -93,7 +131,11 @@ function Sidebar(props) {
             <ListItemIcon sx={{ color: "#ff7043" }}>
               <LogoutIcon />
             </ListItemIcon>
-            <ListItemText primary="Logout" sx={{ color: "#64b5f6" }} />
+            <ListItemText
+              primary="Logout"
+              sx={{ color: "#64b5f6" }}
+              onClick={logOut}
+            />
           </ListItemButton>
         </ListItem>
       </List>
@@ -115,14 +157,6 @@ function Sidebar(props) {
           bgcolor: "#90caf9",
         }}
       >
-        {/* <Box >
-  <Toolbar sx={{display:"flex", justifyContent:"space-between"}} >
- 
-  <Typography marginLeft={"45%"} >Hospital Name</Typography>
-  <Typography sx={{display: {xs:"none" , md:"flex" }}}>Welcome user</Typography>
-  </Toolbar>
-</Box> */}
-
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <IconButton
             color="inherit"
@@ -163,7 +197,7 @@ function Sidebar(props) {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Log-Out</MenuItem>
+              <MenuItem onClick={logOut}>Log-Out</MenuItem>
             </Menu>
           </Stack>
         </Toolbar>
