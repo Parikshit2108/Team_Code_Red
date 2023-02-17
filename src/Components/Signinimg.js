@@ -7,7 +7,11 @@ const Signinimg = () => {
         <div className="sign_img mt-5">
           {/* <img src="./sign.svg" style={{ maxWidth: 400 }} alt="" /> */}
 
-          <img src="./sign.svg" style={{ maxWidth: 400 }} alt="" />
+          <img
+            src="./sign.svg"
+            style={{ maxWidth: 650, height: "50vh" }}
+            alt=""
+          />
         </div>
       </div>
     </>

@@ -1,12 +1,12 @@
 import * as React from "react";
 import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
+import {Table} from "@mui/material";
+import {TableBody} from "@mui/material";
+import {TableCell} from "@mui/material";
+import {TableContainer} from "@mui/material";
+import {TableHead} from "@mui/material";
+import {TablePagination} from "@mui/material";
+import {TableRow} from "@mui/material";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 
@@ -17,25 +17,25 @@ const columns = [
     id: "email",
     label: "Email",
     minWidth: 100,
-    align: "right",
+    align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "profile",
     label: "Profile",
     minWidth: 100,
-    align: "right",
+    align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "contact",
     label: "Contact_Number",
     minWidth: 100,
-    align: "right",
+    align: "center",
     format: (value) => value.toFixed(2),
   },
 ];
-let userInfo = JSON.parse(localStorage.getItem("useryoutube"));
+let userInfo = JSON.parse(localStorage.getItem("userdata"));
 
 const rows = userInfo;
 // [
@@ -70,7 +70,7 @@ export default function ColumnGroupingTable() {
       }}
     >
       <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="stickyHeader">
+        <Table stickyHeader aria-label="stickyHeader" align="center">
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={5}>
@@ -95,11 +95,18 @@ export default function ColumnGroupingTable() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 return (
-                  <TableRow key={index}>
-                    <TableCell>{index}</TableCell>
+                  <TableRow align="center" key={index}>
+                    <TableCell>{index + 1}</TableCell>
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.email}</TableCell>
-                    <TableCell>{row.name}</TableCell>
+                    <TableCell>
+                      {" "}
+                      <img
+                        src={row.profile}
+                        alt="profile"
+                        width={"50px"}
+                      />{" "}
+                    </TableCell>
                     <TableCell>{row.contact}</TableCell>
                   </TableRow>
                 );

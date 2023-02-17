@@ -13,15 +13,17 @@ import {
   Typography,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import { Box, margin } from "@mui/system";
+import { Box } from "@mui/system";
 import { Button } from "@mui/material";
-import { element } from "prop-types";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PaymentsIcon from "@mui/icons-material/Payments";
+import { useNavigate } from "react-router-dom";
 
 function BookingModel() {
+  let navigate = useNavigate();
   const [formErrors, setformErrors] = useState({
+    errorname: false,
     errorDate: false,
     errorgender: false,
     errortest: false,
@@ -31,20 +33,20 @@ function BookingModel() {
     errorBookingSlot1: false,
   });
   const [inputValue, setinputValue] = useState({
-    patientname: "null",
+    patientname: "",
     Date: "",
     gender: "",
     test: "",
-    doctorname: "",
+    Drname: "",
     paymentMode: "",
     BookingSlot: "",
   });
-  console.log(inputValue);
-  //temp
-  let plandata = JSON.parse(localStorage.getItem("pldata"));
+
+  let plandata = JSON.parse(localStorage.getItem("plandata"));
 
   const confirmBooking = () => {
     let error = false;
+    let tempname = false;
     let tempDate = false;
     let tempgender = false;
     let temptest = false;
@@ -52,6 +54,11 @@ function BookingModel() {
     let temppaymentMode = false;
     let tempBookingSlot = false;
     let tempBookingSlot1 = false;
+
+    if (inputValue.patientname === "") {
+      tempname = true;
+      error = true;
+    }
 
     if (inputValue.Date === "") {
       tempDate = true;
@@ -68,7 +75,7 @@ function BookingModel() {
       error = true;
     }
 
-    if (inputValue.doctorname === "") {
+    if (inputValue.Drname === "") {
       tempdoctorname = true;
       error = true;
     }
@@ -89,6 +96,7 @@ function BookingModel() {
     }
 
     setformErrors({
+      errorname: tempname,
       errorDate: tempDate,
       errorgender: tempgender,
       errortest: temptest,
@@ -104,6 +112,8 @@ function BookingModel() {
 
       slotBook.push(inputValue);
       localStorage.setItem("patientData", JSON.stringify(slotBook));
+      alert("Apointment Booked Successfully");
+      navigate("/Aboutmain");
     }
   };
 
@@ -134,6 +144,7 @@ function BookingModel() {
           </Grid>
 
           <TextField
+            type="text"
             variant="outlined"
             style={{ marginBottom: "12px" }}
             label="Patient Name"
@@ -142,10 +153,13 @@ function BookingModel() {
             required
             onChange={(e) => {
               setinputValue({ ...inputValue, patientname: e.target.value });
-              console.log(e.target.value);
             }}
           />
-
+          {formErrors.errorname && (
+            <Typography color="error">
+              This Field Should'nt be Empty name
+            </Typography>
+          )}
           <TextField
             type="date"
             placeholder="Enter Booking Slot Date"
@@ -155,12 +169,13 @@ function BookingModel() {
             required
             onChange={(e) => {
               setinputValue({ ...inputValue, Date: e.target.value });
-              console.log(e.target.value);
             }}
           />
 
           {formErrors.errorDate && (
-            <Typography color="error">This Field Should'nt be Empty</Typography>
+            <Typography color="error">
+              This Field Should'nt be Empty date
+            </Typography>
           )}
 
           <FormControl style={{ marginBottom: "12px" }}>
@@ -171,7 +186,6 @@ function BookingModel() {
               name="row-radio-buttons-group"
               onChange={(e) => {
                 setinputValue({ ...inputValue, gender: e.target.value });
-                console.log(e.target.value);
               }}
             >
               <FormControlLabel
@@ -214,26 +228,11 @@ function BookingModel() {
                 placeholder="Select Test"
                 onChange={(e) => {
                   setinputValue({ ...inputValue, test: e.target.value });
-                  console.log(e.target.value);
                 }}
-
-                //   onChange={handleChange}
               >
                 {plandata.map((element) => (
                   <MenuItem value={`${element.test}`}>{element.test}</MenuItem>
                 ))}
-                {/* <MenuItem value={"Blood Test"}>Blood Test</MenuItem>
-                  <MenuItem value={"Sugar Test"}>Sugar Test</MenuItem>
-                  <MenuItem value={"Tyroid Test"}>Tyroid Test</MenuItem>
-                  <MenuItem value={"Covid 19 Test"}>Covid 19 Test</MenuItem>
-                  <MenuItem value={"BP Test"}>BP Test</MenuItem>
-                  <MenuItem value={"HIV Test"}>HIV Test</MenuItem>
-                  <MenuItem value={"CT Scan"}>CT Scan</MenuItem>
-                  <MenuItem value={"Urine Test"}>Urine Test</MenuItem>
-                  <MenuItem value={"Diabetes"}>Diabetes</MenuItem>
-                  <MenuItem value={"Malaria Test"}>Malaria Test</MenuItem>
-                  <MenuItem value={"Kidney Test"}>Kidney Test</MenuItem>
-                  <MenuItem value={"Eye Test"}>Eye Test</MenuItem> */}
               </Select>
             </FormControl>
             {formErrors.errortest && (
@@ -241,18 +240,31 @@ function BookingModel() {
                 This Field Should'nt be Empty
               </Typography>
             )}
-
-            <TextField
-              variant="outlined"
-              style={{ marginBottom: "12px" }}
-              label="Doctor Name"
-              placeholder="Enter Doctor Name"
-              fullWidth
-              onChange={(e) => {
-                setinputValue({ ...inputValue, doctorname: e.target.value });
-                console.log(e.target.value);
-              }}
-            />
+            <FormControl fullWidth style={{ marginBottom: "12px" }}>
+              <InputLabel
+                id="demo-simple-select-label"
+                style={{ marginBottom: "12px" }}
+              >
+                Doctor
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={inputValue.Drname}
+                variant="outlined"
+                label="Doctor"
+                placeholder="Doctor"
+                onChange={(e) => {
+                  setinputValue({ ...inputValue, Drname: e.target.value });
+                }}
+              >
+                {plandata.map((element) => (
+                  <MenuItem value={`${element.Drname}`}>
+                    {element.Drname}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             {formErrors.errordoctorname && (
               <Typography color="error">
                 This Field Should'nt be Empty
@@ -268,7 +280,6 @@ function BookingModel() {
               fullWidth
               onChange={(e) => {
                 setinputValue({ ...inputValue, BookingSlot: e.target.value });
-                console.log(e.target.value);
               }}
             />
             {formErrors.errorBookingSlot && (
@@ -298,21 +309,36 @@ function BookingModel() {
                     ...inputValue,
                     paymentMode: e.target.value,
                   });
-                  console.log(e.target.value);
                 }}
               >
                 <MenuItem value={"UPI"}>
                   UPI
-                  <PaymentsIcon sx={{ display: "flex", color: "#fb8c00" }} />
+                  <PaymentsIcon
+                    sx={{
+                      display: "flex",
+                      color: "#fb8c00",
+                      marginLeft: "370px",
+                    }}
+                  />
                 </MenuItem>
                 <MenuItem value={"NetBanking"}>
                   NetBanking
-                  <CreditCardIcon sx={{ display: "flex", color: "#0d47a1" }} />
+                  <CreditCardIcon
+                    sx={{
+                      display: "flex",
+                      color: "#0d47a1",
+                      marginLeft: "313px",
+                    }}
+                  />
                 </MenuItem>
                 <MenuItem value={"Cash"}>
                   Cash
                   <CurrencyRupeeIcon
-                    sx={{ display: "flex", color: "#1b5e20" }}
+                    sx={{
+                      display: "flex",
+                      color: "#1b5e20",
+                      marginLeft: "360px",
+                    }}
                   />
                 </MenuItem>
               </Select>
@@ -327,7 +353,6 @@ function BookingModel() {
               <Button
                 variant="contained"
                 sx={{ backgroundColor: "#64b5f6" }}
-                // sx={{ marginLeft:'2%', backgroundColor:'#64b5f6', marginTop:{xs:'10px',md:'70px'}}}
                 onClick={() => {
                   confirmBooking();
                 }}

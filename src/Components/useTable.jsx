@@ -5,7 +5,6 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-// import { purple } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import React, { useState } from "react";
 
@@ -43,7 +42,6 @@ export default function useTable(data, headCells) {
   const TableContainer = (props) => {
     return <Table className={classes.useStyles}>{props.children}</Table>;
   };
-
   const TableHeads = (props) => {
     return (
       <TableHead>
@@ -66,6 +64,7 @@ export default function useTable(data, headCells) {
   };
   const handleChangeRowsPerPage = (event) => {
     setRowPerPage(parseInt(event.target.value, 10));
+    console.log(event.target.value);
   };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

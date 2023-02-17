@@ -11,8 +11,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import {Toolbar} from "@mui/material";
+import {Typography} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
@@ -23,19 +23,22 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import { Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import BookingModel from "./BookingModel";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
 function Sidebar(props) {
   let navigate = useNavigate();
 
-  let logOut = () => {
+  let logOut = function log() {
     alert("Are you sure, You want to logout...");
     localStorage.removeItem("logindata");
-    navigate("/Login");
+    navigate("/");
   };
+  let username = JSON.parse(localStorage.getItem("logindata"));
+  // console.log(username);
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -134,7 +137,9 @@ function Sidebar(props) {
             <ListItemText
               primary="Logout"
               sx={{ color: "#64b5f6" }}
-              onClick={logOut}
+              onClick={() => {
+                logOut();
+              }}
             />
           </ListItemButton>
         </ListItem>
@@ -175,7 +180,7 @@ function Sidebar(props) {
             <Typography
               sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
             >
-              username
+              welcome {username ? username[0] : ""}
             </Typography>
             <IconButton
               size="large"
@@ -197,7 +202,13 @@ function Sidebar(props) {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>My account</MenuItem>
-              <MenuItem onClick={logOut}>Log-Out</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  logOut();
+                }}
+              >
+                Log-Out
+              </MenuItem>
             </Menu>
           </Stack>
         </Toolbar>

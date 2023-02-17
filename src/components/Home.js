@@ -13,14 +13,12 @@ const Home = () => {
     name: "",
     contact: "",
     email: "",
-    // date: "",
     profile:
       "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
     password: "",
     cpassword: "",
   });
 
-  const [data, setData] = useState([]);
   const getdata = (e) => {
     // console.log(e.target.value);
 
@@ -99,7 +97,7 @@ const Home = () => {
           padding: "8%",
         }}
       > */}
-      <div className="container mt-3 main ">
+      <div className="container mt-3">
         <section className="d-flex justify-content-between">
           <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
             <h3 className="text-center col-lg-6">Registration</h3>

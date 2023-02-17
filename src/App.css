@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+
+.container{
+ 
+}
+.indiv{
+   background-image: url("/public/Images/doctor-6810750.png");
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center;
+}
+.about{
+  font-family: 'Times New Roman', Times, serif !important;
+  color: rgb(224, 138, 18);
+font-weight: 25px;
+
+
+}

@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/styles";
 import "./App.css";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Components/Login";
 import Home from "./Components/Home";
 import Aboutmain from "./Components/Aboutmain";
@@ -16,7 +16,7 @@ const theme = createTheme({});
 function App() {
   let navigate = useNavigate();
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("localdata"))) {
+    if (!JSON.parse(localStorage.getItem("logindata"))) {
       navigate("/");
     }
   }, []);
@@ -31,7 +31,7 @@ function App() {
           <Route path="/Bookinginfo" element={<Bookinginfo />}></Route>
           <Route path="/Userinfomain" element={<Userinfomain />}></Route>
           <Route path="/PlanpriceMain" element={<PlanpriceMain />}></Route>
-          {/* <Route path="/BookingMain" element={<BookingMain />}></Route> */}
+          <Route path="/BookingMain" element={<BookingMain />}></Route>
         </Routes>
       </ThemeProvider>
     </div>

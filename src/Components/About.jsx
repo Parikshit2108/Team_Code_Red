@@ -3,13 +3,14 @@ import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
+import {Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { Grid } from "@mui/material";
+import "../App.css";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -101,8 +102,9 @@ function About() {
               }}
             >
               <Typography
+                className="about"
                 variant="h3"
-                sx={{ fontFamily: "fantasy", color: "#fb8c00" }}
+                // sx={{  color: "#fb8c00" }}
               >
                 {" "}
                 ABOUT US{" "}

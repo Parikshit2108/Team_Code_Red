@@ -11,8 +11,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import { Toolbar } from "@mui/material";
+import { Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
@@ -24,7 +24,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import { Stack } from "@mui/material";
 import About from "./About";
-import UserInfo from "./UserInfo";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -32,13 +31,12 @@ const drawerWidth = 240;
 function Sidebar(props) {
   let navigate = useNavigate();
 
-  let logOut = function log() {
+  let logOut = () => {
     alert("Are you sure, You want to logout...");
     localStorage.removeItem("logindata");
     navigate("/");
   };
   let username = JSON.parse(localStorage.getItem("logindata"));
-  // console.log(username);
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);

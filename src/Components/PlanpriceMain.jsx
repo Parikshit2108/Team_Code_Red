@@ -11,8 +11,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import {Toolbar} from "@mui/material";
+import {Typography} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
@@ -34,85 +34,89 @@ const plan = [
   {
     test: "Blood Test",
     Price: "$500",
-    Drname: "abcd",
+    Drname: "Dr.Alisha",
     availableslot: 5,
   },
   {
     test: "Sugar Test",
     Price: "$700",
-    Drname: "abcd",
+    Drname: "Dr.Wisdom",
     availableslot: 5,
   },
   {
     test: "Tyroid Test",
     Price: "$800",
-    Drname: "abcd",
+    Drname: "Dr.Edword",
     availableslot: 5,
   },
   {
     test: "Covid 19 Test",
     Price: "$900",
-    Drname: "abcd",
+    Drname: "Dr.Jenny",
     availableslot: 5,
   },
   {
     test: "Bp Test",
     Price: "$500",
-    Drname: "abcd",
+    Drname: "Dr.Charls",
     availableslot: 5,
   },
   {
     test: "Hiv Test",
     Price: "$2000",
-    Drname: "abcd",
+    Drname: "Dr.Das",
     availableslot: 5,
   },
   {
     test: "CT scans ",
     Price: "$5000",
-    Drname: "abcd",
+    Drname: "Dr.Sheetal",
     availableslot: 5,
   },
   {
     test: "Urine Test ",
     Price: "$200",
-    Drname: "abcd",
+    Drname: "Dr.Parikshit",
     availableslot: 5,
   },
   {
     test: "Diabetes ",
     Price: "$500",
-    Drname: "abcd",
+    Drname: "Dr.Drake Rmory",
     availableslot: 5,
   },
   {
     test: "Malaria Test ",
     Price: "$50",
-    Drname: "abcd",
+    Drname: "Dr.Chandler",
     availableslot: 5,
   },
   {
     test: "kidney Test ",
     Price: "$100",
-    Drname: "abcd",
+    Drname: "Dr.Ross",
     availableslot: 5,
   },
   {
     test: "Eye Test ",
     Price: "$100",
-    Drname: "abcd",
+    Drname: "Dr.Rachel",
     availableslot: 5,
   },
 ];
+localStorage.setItem("plandata", JSON.stringify(plan));
 
 function Sidebar(props) {
   let navigate = useNavigate();
 
-  let logOut = () => {
+  let logOut = function log() {
     alert("Are you sure, You want to logout...");
     localStorage.removeItem("logindata");
-    navigate("/Login");
+    navigate("/");
   };
+  let username = JSON.parse(localStorage.getItem("logindata"));
+  // console.log(username);
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -211,7 +215,9 @@ function Sidebar(props) {
             <ListItemText
               primary="Logout"
               sx={{ color: "#64b5f6" }}
-              onClick={logOut}
+              onClick={() => {
+                logOut();
+              }}
             />
           </ListItemButton>
         </ListItem>
@@ -252,7 +258,7 @@ function Sidebar(props) {
             <Typography
               sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
             >
-              username
+              welcome {username ? username[0] : ""}
             </Typography>
             <IconButton
               size="large"
@@ -274,7 +280,13 @@ function Sidebar(props) {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>My account</MenuItem>
-              <MenuItem onClick={logOut}>Log-Out</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  logOut();
+                }}
+              >
+                Log-Out
+              </MenuItem>
             </Menu>
           </Stack>
         </Toolbar>
