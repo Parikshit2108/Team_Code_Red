@@ -19,11 +19,14 @@ import { element } from "prop-types";
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import PaymentsIcon from '@mui/icons-material/Payments';
+// import {useNavigate} from "react-router-dom"
 
 
 function BookingModel() {
     
+// let navigate = useNavigate()
    const [formErrors, setformErrors] = useState({
+    
     errorDate:false,
     errorgender: false,
     errortest: false,
@@ -92,6 +95,7 @@ let plandata=JSON.parse(localStorage.getItem("plandata"))
   }
 
     setformErrors({
+      
         errorDate:tempDate,
     errorgender: tempgender,
     errortest: temptest,
@@ -149,6 +153,7 @@ let plandata=JSON.parse(localStorage.getItem("plandata"))
                 console.log(e.target.value);
               }}
             />
+
             
             <TextField
               type="date"
@@ -244,7 +249,10 @@ let plandata=JSON.parse(localStorage.getItem("plandata"))
                   //   onChange={handleChange}
                 >
                   {plandata.map((element)=> <MenuItem value={`${element.Drname}`}>{element.Drname}</MenuItem>)}
+                  
                 </Select>
+       
+
               </FormControl>
             {formErrors.errordoctorname &&  <Typography color="error">This Field Should'nt be Empty</Typography>}
 
@@ -283,9 +291,9 @@ let plandata=JSON.parse(localStorage.getItem("plandata"))
                     });
                     console.log(e.target.value);
                   }}>
-                  <MenuItem value={"UPI"}>UPI<PaymentsIcon sx={{display:"flex", color:"#fb8c00"}} /></MenuItem>
-                  <MenuItem value={"NetBanking"}>NetBanking<CreditCardIcon sx={{display:"flex", color:"#0d47a1"}} /></MenuItem>
-                  <MenuItem  value={"Cash"}>Cash<CurrencyRupeeIcon sx={{display:"flex", color:"#1b5e20"}} /></MenuItem>
+                  <MenuItem value={"UPI"}>UPI<PaymentsIcon sx={{display:"flex", color:"#fb8c00" ,marginLeft:'370px'}} /></MenuItem>
+                  <MenuItem value={"NetBanking"}>NetBanking<CreditCardIcon sx={{display:"flex", color:"#0d47a1",marginLeft:'313px'}} /></MenuItem>
+                  <MenuItem  value={"Cash"}>Cash<CurrencyRupeeIcon sx={{display:"flex", color:"#1b5e20",marginLeft:'360px'}} /></MenuItem>
                 </Select>
               </FormControl>
               
@@ -297,6 +305,8 @@ let plandata=JSON.parse(localStorage.getItem("plandata"))
             // sx={{ marginLeft:'2%', backgroundColor:'#64b5f6', marginTop:{xs:'10px',md:'70px'}}} 
             onClick={()=>{
                     confirmBooking()
+                    // alert("Appointment Booked Successfully")
+                    // navigate("/Aboutmain")
                   }} >Confirm Booking</Button>
               </Grid>
             </Box>
