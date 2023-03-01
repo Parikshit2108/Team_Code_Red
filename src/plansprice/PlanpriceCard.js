@@ -85,6 +85,7 @@ const plan = [{
 ];
 
 
+
 localStorage.setItem("plandata",JSON.stringify(plan))
 function PlanpriceCard() {
 

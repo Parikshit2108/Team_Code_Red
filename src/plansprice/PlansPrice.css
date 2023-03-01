@@ -18,10 +18,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     /* background-color: RED; */
+    flex-grow: 1;
+    flex-wrap: wrap;
+    
     
 }
 .cardbody{
-    margin-top: 30px;
+    
     height: 100vh;
     width: 100%;
     /* border: 2px solid black; */

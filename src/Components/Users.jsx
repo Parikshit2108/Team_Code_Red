@@ -19,9 +19,10 @@ const useStyles = makeStyles((theme) => ({
 const headCells = [
   { id: "userId", lable: "ID" },
   { id: "name", lable: "Patient Name" },
-  { id: "date", lable: "Appointment Date" },
+  { id: "Date", lable: "Appointment Date" },
   { id: "docName", lable: "DocName" },
-  { id: "slot", lable: "AvailabelSlot" },
+  { id: "slot", lable: "Booked lSlot" },
+  { id: "test", lable: "Test" },
 ];
 
 export default function Users() {
@@ -29,21 +30,16 @@ export default function Users() {
 
   const [data, setData] = useState([
     {
-      id: "1",
-      name: "abcd",
-      date: "13062023",
-      docName: "alexander",
-      slot: "available",
-    },
-    {
-      id: "2",
-      name: "abcd",
-      date: "13062023",
-      docName: "alexander",
-      slot: "available",
+      id: "",
+      patientname: "",
+      Date: "",
+      Drname: "",
+      gender: "",
+      test: "",
+      BookingSlot: "",
     },
   ]);
-  // console.log(setData);
+  let userInfo = JSON.parse(localStorage.getItem("patientData"));
 
   const { TableContainer, TableHeads, TblPagination } = useTable(
     data,
@@ -61,23 +57,26 @@ export default function Users() {
           <TableContainer>
             <TableHeads />
             <TableBody>
-              {data.map((item) => {
+              {userInfo.map((item, index) => {
                 return (
                   <TableRow sx={{ bgcolor: "lightskyblue" }} key={item.id}>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.id}
+                      {index + 1}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.name}
+                      {item.patientname}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.date}
+                      {item.Date}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.docName}
+                      {item.Drname}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.slot}
+                      {item.BookingSlot}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.test}
                     </TableCell>
                   </TableRow>
                 );
