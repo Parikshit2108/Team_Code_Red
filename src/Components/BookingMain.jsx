@@ -11,8 +11,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
-import {Toolbar} from "@mui/material";
-import {Typography} from "@mui/material";
+import { Toolbar } from "@mui/material";
+import { Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
@@ -31,15 +31,21 @@ const drawerWidth = 240;
 function Sidebar(props) {
   let navigate = useNavigate();
 
-  let logOut = function log() {
-    alert("Are you sure, You want to logout...");
-    localStorage.removeItem("logindata");
-    navigate("/");
+  let logOut = () => {
+    let res = window.confirm(
+      "Are you sure ? you want to logout....press Ok to loagout or Cancel"
+    );
+    if (res) {
+      localStorage.removeItem("logindata");
+      navigate("/");
+    } else {
+      navigate("/BookingMain");
+    }
   };
   let username = JSON.parse(localStorage.getItem("logindata"));
   // console.log(username);
 
-  const { window } = props;
+  const { win } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -148,8 +154,7 @@ function Sidebar(props) {
     </div>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = win !== undefined ? () => win().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>

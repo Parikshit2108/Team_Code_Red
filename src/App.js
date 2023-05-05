@@ -10,6 +10,10 @@ import Userinfomain from "./Components/Userinfomain";
 import PlanpriceMain from "./Components/PlanpriceMain";
 import BookingMain from "./Components/BookingMain";
 import { useEffect } from "react";
+// import Mock from "./mock/Mock";
+// import FormValidation from "./mock/FormValidation";
+// import FindVowels from "./mock/FindVowels";
+import AxiosFetch from "./mock/AxiosFetch";
 
 const theme = createTheme({});
 
@@ -23,6 +27,9 @@ function App() {
 
   return (
     <div className="App">
+      {/* <FormValidation /> */}
+      {/* <AxiosFetch /> */}
+      {/* <FindVowels /> */}
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path="/" element={<Login />}></Route>
@@ -34,6 +41,7 @@ function App() {
           <Route path="/BookingMain" element={<BookingMain />}></Route>
         </Routes>
       </ThemeProvider>
+      {/* <Mock /> */}
     </div>
   );
 }

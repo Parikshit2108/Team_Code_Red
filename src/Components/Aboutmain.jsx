@@ -32,13 +32,19 @@ function Sidebar(props) {
   let navigate = useNavigate();
 
   let logOut = () => {
-    alert("Are you sure, You want to logout...");
-    localStorage.removeItem("logindata");
-    navigate("/");
+    let res = window.confirm(
+      "Are you sure ? you want to logout....press Ok to loagout or Cancel"
+    );
+    if (res) {
+      localStorage.removeItem("logindata");
+      navigate("/");
+    } else {
+      navigate("/Aboutmain");
+    }
   };
   let username = JSON.parse(localStorage.getItem("logindata"));
 
-  const { window } = props;
+  const { win } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -136,9 +142,7 @@ function Sidebar(props) {
             <ListItemText
               primary="Logout"
               sx={{ color: "#64b5f6" }}
-              onClick={() => {
-                logOut();
-              }}
+              onClick={() => logOut()}
             />
           </ListItemButton>
         </ListItem>
@@ -147,8 +151,7 @@ function Sidebar(props) {
     </div>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = win !== undefined ? () => win().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>

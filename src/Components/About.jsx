@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
@@ -11,6 +11,7 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { Grid } from "@mui/material";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -56,6 +57,7 @@ const images = [
 ];
 
 function About() {
+  let navigate = useNavigate();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
@@ -121,6 +123,9 @@ function About() {
               <Button
                 variant="contained"
                 sx={{ marginTop: { lg: "230px", xs: "50px", md: "100px" } }}
+                onClick={() => {
+                  navigate("/BookingMain");
+                }}
               >
                 Book Your Appointment
               </Button>

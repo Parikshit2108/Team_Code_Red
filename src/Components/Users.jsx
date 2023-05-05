@@ -55,7 +55,7 @@ export default function Users() {
             Appointments{" "}
           </Typography>
           <TableContainer>
-            <TableHeads />
+            <TableHeads  />
             <TableBody>
               {userInfo.map((item, index) => {
                 return (
