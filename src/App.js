@@ -13,7 +13,7 @@ import { useEffect } from "react";
 // import Mock from "./mock/Mock";
 // import FormValidation from "./mock/FormValidation";
 // import FindVowels from "./mock/FindVowels";
-import AxiosFetch from "./mock/AxiosFetch";
+// import AxiosFetch from "./mock/AxiosFetch";
 
 const theme = createTheme({});
 
